@@ -1,11 +1,10 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class LoopCommerce {
     public static void main(String[] args) {
         //Productos y precios
         String[] productos = {"Arroz","Fideos","Huevos","Leche","Cereal"};
-        int[] precios = {200,250,300,100,150};
+        int[] precios = {1400,1000,4000,1100,3000};
         int subtotal = 0;
         int opcion;
 
@@ -25,7 +24,6 @@ public class LoopCommerce {
             System.out.println("");
 
             if (opcion == 1) {
-                //Ejercicio 1
                 int index = 1;
 
                 for (String prod : productos) {
@@ -37,8 +35,7 @@ public class LoopCommerce {
                 //Imprime los productos y su precio
                 for (int i = 0; i < productos.length; i++) {
                     System.out.println(i + 1 + ".- " + productos[i] + " - $" + precios[i]);
-                }
-                ;
+                };
                 //Solicitar elección:
                 System.out.print(">Seleccione el producto a comprar por su número: ");
                 int prodElegido = scan.nextInt() - 1;
@@ -48,12 +45,12 @@ public class LoopCommerce {
 
                 while (cantidad >= 1) {
                     System.out.println("Se ha seleccionado el producto: " + productos[prodElegido] +
-                            " ($" + precios[prodElegido] + ") x " + cantidad);
+                            " ($" + precios[prodElegido] + ") x " + cantidad);      //Muestra producto y cantidad
                     subtotal = subtotal + precios[prodElegido] * cantidad;
                     System.out.println("Subtotal: " + subtotal);
                     System.out.print("Quiere agregar más? Ingrese el producto (ingrese 0 para salir): ");
                     prodElegido = scan.nextInt();
-                    if (prodElegido == 0) {
+                    if (prodElegido == 0) {     //permite salir al momento de elegir producto, ya que el while depende de cantidad = 0
                         break;
                     } else {
                         prodElegido = prodElegido - 1;
@@ -73,17 +70,16 @@ public class LoopCommerce {
                 String[] mensajes = new String[]{"Validando stock...","Stock disponible ✅",
                         "Procesando pago...","Pago aceptado!. Se realizará el envío a su dirección"};
                 for (int i = 0; i < mensajes.length; i++) {
-                    if(i!=1){
-                        System.out.println(mensajes[i]);
-                    }
+                    System.out.println(mensajes[i]);
                     //Espera falsa
                     try{
-                        Thread.sleep(2000);     //1  segundo
+                        if(i==1){
+                            Thread.sleep(500);
+                        }else{
+                        Thread.sleep(3000);
+                        }
                     }catch(InterruptedException e){
                         e.printStackTrace();
-                    }
-                    if(i==0){
-                        System.out.println(mensajes[i+1]);
                     }
                 }
             } else {
